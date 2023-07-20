@@ -1,4 +1,10 @@
 <div class="card-container">
-    <app-card *ngFor="let card of cards" [card]="card"></app-card>
+    <app-card *ngFor="let card of getPaginatedCards()" [card]="card"></app-card>
 </div>
-  
+
+<!-- Pagination controls -->
+<ul class="pagination">
+  <li class="page-item" [ngClass]="{ 'active': currentPage === i }" *ngFor="let i of getPageNumbers()">
+    <a class="page-link" (click)="onPageChange(i)">{{ i }}</a>
+  </li>
+</ul>
