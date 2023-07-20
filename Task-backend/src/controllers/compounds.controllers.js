@@ -20,7 +20,19 @@ const updateCompound = async (req, res) => {
   }
 };
 
+const getOneCompound = async (req, res) => {
+  try {
+    const compoundId = Number(req.params.id);
+    const compound = await compoundServices.getOneCompound(compoundId);
+    res.status(200).json(compound);
+  } catch (err) {
+    res.status(500).json(err);
+    res.end();
+  }
+};
+
 module.exports = {
   getAllCompounds,
   updateCompound,
+  getOneCompound,
 };

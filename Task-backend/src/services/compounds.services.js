@@ -26,10 +26,23 @@ const editCompound = async (_id, new_description) => {
   }
 };
 
+const getOneCompound = async (_id) => {
+  try {
+    const compound = await db.Compounds.findOne({
+      where: {
+        id: _id,
+      },
+    });
+    return compound;
+  } catch (err) {
+    console.log("failed to get compound");
+  }
+};
+
 
 
 module.exports = {
   getAllCompounds,
   editCompound,
- 
+  getOneCompound,
 };

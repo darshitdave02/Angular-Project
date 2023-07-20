@@ -1,9 +1,9 @@
 const app = require("express");
 const {
   getAllCompounds,
-  addCompound,
+  getOneCompound,
   updateCompound,
-  deleteCompound,
+  
 } = require("../controllers/compounds.controllers");
 const validateReqest = require("../middlewares/compounds.validateMiddleware");
 const Router = app.Router;
@@ -11,6 +11,8 @@ const Router = app.Router;
 const router = Router();
 
 router.get("", getAllCompounds);
+
+router.get("/:id", getOneCompound);
 
 
 router.patch("/:id", validateReqest, updateCompound);
