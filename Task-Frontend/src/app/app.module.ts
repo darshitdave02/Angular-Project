@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { HeaderComponent } from './components/header/header.component';
 import { CardComponent } from './components/card/card.component';
 import { CardContainerComponent } from './components/card-container/card-container.component';
@@ -24,7 +25,8 @@ import { CompoundPageComponent } from './pages/compound-page/compound-page.compo
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule // Add FormsModule
   ],
   providers: [CompoundsService],
   bootstrap: [AppComponent]

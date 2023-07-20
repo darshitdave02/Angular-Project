@@ -9,7 +9,8 @@ import { CompoundsService } from 'src/app/services/compounds.service';
 })
 export class CompoundPageComponent {
   card: any;
-  newDescription: string = '';
+  newDescription: string = ''; 
+  editingMode: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,10 +19,11 @@ export class CompoundPageComponent {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      const compoundId = +params['id']; // The '+' operator converts the string to a number
+      const compoundId = +params['id'];
       this.compoundsService.getCompoundById(compoundId).subscribe(
         (data) => {
           this.card = data;
+          this.newDescription = this.card.description;
         },
         (error) => {
           console.error('Error fetching compound details:', error);
@@ -31,16 +33,23 @@ export class CompoundPageComponent {
   }
 
   updateDescription() {
+    this.card.description = this.newDescription;
+
     const compoundId = this.card.id;
     this.compoundsService
       .updateCompoundDescription(compoundId, this.newDescription)
       .subscribe(
         (data) => {
           this.card.description = data.description;
+          this.toggleEditingMode();
         },
         (error) => {
           console.error('Error updating compound description:', error);
         }
       );
+  }
+
+  toggleEditingMode() {
+    this.editingMode = !this.editingMode;
   }
 }

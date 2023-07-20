@@ -1,12 +1,19 @@
 <div class="view-card">
+  <div class='card'>
     <div class='card'>
-        <div class='card'>
-          <img src='{{ card.imageUrl }}' alt='event_img' />
-          <div class='card-details'>
-            <div class='card-title'>{{ card.name }}</div>
-            <div class="description">{{ card.description }}</div>
-          </div>
-        </div>
+      <img src='{{ card.imageUrl }}' alt='event_img' />
+      <div class='card-details'>
+        <div class='card-title'>{{ card.name }}</div>
+
+        <div class="description" *ngIf="!editingMode">{{ newDescription }}</div>
+
+        <textarea class="description" *ngIf="editingMode" [(ngModel)]="newDescription" name="newDescription"></textarea>
+
+        <button class="edit-button" *ngIf="!editingMode" (click)="toggleEditingMode()">Edit</button>
+
+        <button class="save-button" *ngIf="editingMode" (click)="updateDescription()">Save</button>
+
       </div>
+    </div>
+  </div>
 </div>
-  
